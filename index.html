@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <script src="https://kit.fontawesome.com/9dab8ca62d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <main class="main">
+        <header>
+            <h1>Tic Tac Toe</h1>
+        </header>
+        <section class="players-form-data">
+            <article class="player-form">
+                <p>Player One</p>
+                <div class="field">
+                    <label for="name">Your Name:</label>
+                    <input type="text" name="name">
+                </div>
+                <select name="mark" >
+                    <option value="X">X</option>
+                    <option value="O">O</option>
+                </select>
+            </article>
+            <article class="player-form">
+                <p>Player Two</p>
+                <div class="field">
+                    <label for="name">Your Name:</label>
+                    <input type="text" name="name">
+                </div>
+                <select name="mark" >
+                    <option value="X">X</option>
+                    <option value="O">O</option>
+                </select>
+            </article>
+        </section>
+        <button class="btn">Play</button>
+        <div class="game-turn">
+            <h2>Turn: X</h2>
+        </div>
+        <section class="game-container">
+            <article class="player-information">
+                <h3>Player One</h3>
+                <p class="score">score: <span id="score-value"></span></p>
+            </article>
+            <article>
+                <canvas>
+    
+                </canvas>
+            </article>
+            <article class="player-information">
+                <h3>Player Two</h3>
+                <p class="score">score: <span id="score-value"></span></p>
+            </article>
+        </section>
+        <span id="winner">
+            
+        </span>
+        <section class="game-options">
+            <button><i class="fas fa-home"></i>restar</button>
+            <button><i class="fas fa-redo-alt"></i>reset</button>
+        </section>
+    </main>
+</body>
+</html>
