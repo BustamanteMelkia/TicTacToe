@@ -1,4 +1,90 @@
-/* body{
-    background-color: aqua;
-} */
+/* Globals */
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #e1e1e1;
+    /* font-family: 'Chewy', cursive;*/
+    font-family: 'Roboto', sans-serif;
+}
+.btn{
+    border: unset;
+    border-radius: 3px;
+    /* background-color: #ed8c72; */
+    background-color: #2988bc;
+    color: #e1e1e1;
+    display: block;
+    padding: 1rem;
+    margin: 1rem auto;
+    font-size: 3rem;
+}
+
+
+/* HEADER */
+.header{
+    background-color: #2f496e;
+    margin-top: 2rem;
+}
+
+.header-title{
+    color: #e1e1e1;
+    text-align: center;
+    font-size: 3.5rem;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: bold;
+
+}
+.header-title span{
+    color: #2988bc;
+}
+
+/* DATOS DE LOS JUGADORES*/
+.players-form-data{
+    margin-top: 1rem;
+    padding: 0 2rem;
+}
+.player-form{
+    margin: 3rem 0;
+}
+.player-form-name{
+    color: #555555;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.player-form-field{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.player-form-field label{
+    color: #2f496e;
+    font-size: 3.5rem;
+    margin-right: 1rem;
+}
+.player-form-field:last-of-type label{
+    font-size: 1.9rem;
+}
+.player-form-field input,
+.player-form select{
+    height: 4rem;
+    color: #555555;
+    font-size: 1.7rem;
+    border-radius: 3px;
+    border: 2px solid #555555;
+    flex: 1;
+}
+
+
 

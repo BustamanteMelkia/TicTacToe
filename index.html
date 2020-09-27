@@ -5,38 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TicTacToe</title>
     <script src="https://kit.fontawesome.com/9dab8ca62d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gloria+Hallelujah&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <main class="main">
-        <header>
-            <h1>Tic Tac Toe</h1>
+        <header class="header">
+            <h1 class="header-title">
+                <i class="fas fa-cat"></i>
+                Tic<span>Tac</span>Toe
+            </h1>
         </header>
         <section class="players-form-data">
             <article class="player-form">
-                <p>Player One</p>
-                <div class="field">
-                    <label for="name">Your Name:</label>
-                    <input type="text" name="name">
+                <p class="player-form-name">Player One</p>
+                <div class="player-form-field">
+                    <label for="name"><i class="fas fa-user-edit"></i></label>
+                    <input type="text" name="name" value="Player One">
                 </div>
-                <select name="mark" >
-                    <option value="X">X</option>
-                    <option value="O">O</option>
-                </select>
+                <div class="player-form-field">
+                    <label for="mark">Mark</label>
+                    <select name="mark">
+                        <option value="">Select your mark</option>
+                        <option value="X">X</option>
+                        <option value="O">O</option>
+                    </select>
+                </div>
             </article>
             <article class="player-form">
-                <p>Player Two</p>
-                <div class="field">
-                    <label for="name">Your Name:</label>
-                    <input type="text" name="name">
+                <p class="player-form-name">Player Two</p>
+                <div class="player-form-field">
+                    <label for="name"><i class="fas fa-user-edit"></i></label>
+                    <input type="text" name="name" value="Player Two">
                 </div>
-                <select name="mark" >
-                    <option value="X">X</option>
-                    <option value="O">O</option>
-                </select>
+                <div class="player-form-field">
+                    <label for="mark">Mark</label>
+                    <select name="mark">
+                        <option value="">Select your mark</option>
+                        <option value="X">X</option>
+                        <option value="O">O</option>
+                    </select>
+                </div>
             </article>
         </section>
-        <button class="btn">Play</button>
+        <button class="btn">play <i class="fas fa-play"></i></button>
+        <!--
         <div class="game-turn">
             <h2>Turn: X</h2>
         </div>
@@ -61,7 +74,7 @@
         <section class="game-options">
             <button><i class="fas fa-home"></i>restar</button>
             <button><i class="fas fa-redo-alt"></i>reset</button>
-        </section>
+        </section> -->
     </main>
 </body>
 </html>
