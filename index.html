@@ -17,64 +17,74 @@
             </h1>
         </header>
         <section class="players-form-data">
-            <article class="player-form">
-                <p class="player-form-name">Player One</p>
-                <div class="player-form-field">
-                    <label for="name"><i class="fas fa-user-edit"></i></label>
-                    <input type="text" name="name" value="Player One">
-                </div>
-                <div class="player-form-field">
-                    <label for="mark">Mark</label>
-                    <select name="mark">
-                        <option value="">Select your mark</option>
-                        <option value="X">X</option>
-                        <option value="O">O</option>
-                    </select>
-                </div>
-            </article>
-            <article class="player-form">
-                <p class="player-form-name">Player Two</p>
-                <div class="player-form-field">
-                    <label for="name"><i class="fas fa-user-edit"></i></label>
-                    <input type="text" name="name" value="Player Two">
-                </div>
-                <div class="player-form-field">
-                    <label for="mark">Mark</label>
-                    <select name="mark">
-                        <option value="">Select your mark</option>
-                        <option value="X">X</option>
-                        <option value="O">O</option>
-                    </select>
-                </div>
-            </article>
+            <div class="wrapper">
+                <article class="player-form">
+                    <p class="player-form-name">Player One</p>
+                    <div class="player-form-field">
+                        <label for="name"><i class="fas fa-user-edit"></i></label>
+                        <input type="text" name="name" value="Player One">
+                    </div>
+                    <div class="player-form-field">
+                        <label for="mark">Mark</label>
+                        <select name="mark">
+                            <option value="">Select your mark</option>
+                            <option value="X">X</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                </article>
+                <article class="player-form">
+                    <p class="player-form-name">Player Two</p>
+                    <div class="player-form-field">
+                        <label for="name"><i class="fas fa-user-edit"></i></label>
+                        <input type="text" name="name" value="Player Two">
+                    </div>
+                    <div class="player-form-field">
+                        <label for="mark">Mark</label>
+                        <select name="mark">
+                            <option value="">Select your mark</option>
+                            <option value="X">X</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                </article>
+            </div>
         </section>
-        <button class="btn">play <i class="fas fa-play"></i></button>
-        <!--
-        <div class="game-turn">
-            <h2>Turn: X</h2>
+        <div class="wrapper">
+            <button class="btn">play <i class="fas fa-play"></i></button>
         </div>
+        
+        <div class="game-turn">
+            <h2><span>X</span></h2>
+        </div> 
         <section class="game-container">
-            <article class="player-information">
-                <h3>Player One</h3>
-                <p class="score">score: <span id="score-value"></span></p>
-            </article>
-            <article>
-                <canvas>
-    
-                </canvas>
-            </article>
-            <article class="player-information">
-                <h3>Player Two</h3>
-                <p class="score">score: <span id="score-value"></span></p>
-            </article>
+                <article class="player-information">
+                    <h3>Player One</h3>
+                    <p class="score">score: <span id="score-value"></span></p>
+                </article>
+                <article class="board">
+                    <canvas>
+        
+                    </canvas>
+                </article>
+                <article class="player-information">
+                    <h3>Player Two</h3>
+                    <p class="score">score: <span id="score-value"></span></p>
+                </article>
         </section>
         <span id="winner">
             
         </span>
         <section class="game-options">
-            <button><i class="fas fa-home"></i>restar</button>
-            <button><i class="fas fa-redo-alt"></i>reset</button>
-        </section> -->
+            <div class="wrapper">
+                <button class="btn"><i class="fas fa-home"></i> Home</button>
+                <button class="btn"><i class="fas fa-redo-alt"></i> restart</button>
+            </div>
+
+        </section>
+        <footer class="footer">
+            <p>Developed by Melquiades Bustamante &copy;</p>
+        </footer>
     </main>
 </body>
 </html>
