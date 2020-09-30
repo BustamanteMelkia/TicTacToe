@@ -4,17 +4,16 @@ html {
     font-size: 10px; /* 1rem = 10px */
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
     box-sizing: inherit;
     margin: 0;
     padding: 0;
 }
 
 body{
-    background-color: #e1e1e1;
     font-family: 'Roboto', sans-serif;
+    background-color: #e1e1e1;
+
 }
 .btn{
     border: unset;
@@ -80,8 +79,7 @@ body{
 .player-form-field:last-of-type label{
     font-size: 1.9rem;
 }
-.player-form-field select,
-.player-form-field input{
+.player-form-field select, .player-form-field input{
     height: 5rem;
     color: #555555;
     font-size: 1.7rem;
@@ -109,7 +107,6 @@ body{
     width: 22rem;
     height: 22rem;
     margin: 0 auto;
-    background-color: yellow;
 }
 .board canvas{
     background-color: #2f496e;
@@ -117,14 +114,21 @@ body{
     height: inherit;
     margin: 0 auto;
 }
-.player-information{
+.player .active{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    height: 1.5rem;
+    background-color: #2988bc;
+}
+.player{
     font-family: 'Chewy', cursive;
     color: #2988bc;
     font-size: 1.6rem;
     text-align: center;
     margin-bottom: 1.5rem;
 }
-.player-information p #score-value{
+.player p #score-value{
     color: #555555;
 }
 .game-options{
@@ -145,14 +149,14 @@ body{
 }
 .footer{
     background-color: #555555;
+    padding: 1rem 0;
 }
 .footer p{
     text-align: center;
-    padding: 1rem 0;
     color: #e1e1e1;
 }
 @media screen and (min-width: 320px){
-    .player-information{
+    .player{
         font-size: 2rem;
     }
     .footer p{
@@ -165,6 +169,9 @@ body{
     }
     .game-turn h2{
         font-size: 6rem;
+    }
+    .player .active{
+        width: 100%;
     }
     .game-container{
         display: flex;
@@ -179,8 +186,38 @@ body{
 
 }
 @media screen and (min-width: 768px){
-
+    .players-form-data{
+        width: 40rem;
+        margin: 2rem auto;
+        padding: 0 3rem;
+        border-radius: 4px;
+        background-color: #ffffff;
+        border: 1px solid #555555;
+        box-shadow: 0 6px 6px #555555, 6px 0 8px #555555 ;
+    }
+    .game-turn h2{
+        font-size: 7rem;
+    }
+    .player{
+        font-size: 2.5rem;
+    }
+    .board{
+        width: 30rem;
+        height: 30rem;
+    }
+    .game-options .btn{
+        padding: 0.8rem 2.2rem;
+        font-size: 1.8rem;
+    }
+    .game-options .btn:first-of-type{
+        margin-right: 5rem;
+    }
+    .game-options .btn i{
+        font-size: 2.6rem;
+    }
 }
 @media screen and (min-width: 1024px){
-
+    .header-title{
+        font-size: 4rem;
+    }
 }

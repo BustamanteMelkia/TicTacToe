@@ -17,48 +17,46 @@
             </h1>
         </header>
         <section class="players-form-data">
-            <div class="wrapper">
-                <article class="player-form">
-                    <p class="player-form-name">Player One</p>
-                    <div class="player-form-field">
-                        <label for="name"><i class="fas fa-user-edit"></i></label>
-                        <input type="text" name="name" value="Player One">
-                    </div>
-                    <div class="player-form-field">
-                        <label for="mark">Mark</label>
-                        <select name="mark">
-                            <option value="">Select your mark</option>
-                            <option value="X">X</option>
-                            <option value="O">O</option>
-                        </select>
-                    </div>
-                </article>
-                <article class="player-form">
-                    <p class="player-form-name">Player Two</p>
-                    <div class="player-form-field">
-                        <label for="name"><i class="fas fa-user-edit"></i></label>
-                        <input type="text" name="name" value="Player Two">
-                    </div>
-                    <div class="player-form-field">
-                        <label for="mark">Mark</label>
-                        <select name="mark">
-                            <option value="">Select your mark</option>
-                            <option value="X">X</option>
-                            <option value="O">O</option>
-                        </select>
-                    </div>
-                </article>
-            </div>
-        </section>
-        <div class="wrapper">
+            <article class="player-form">
+                <p class="player-form-name">Player One</p>
+                <div class="player-form-field">
+                    <label for="name"><i class="fas fa-user-edit"></i></label>
+                    <input type="text" name="name" value="Player One">
+                </div>
+                <div class="player-form-field">
+                    <label for="mark">Mark</label>
+                    <select name="mark">
+                        <option value="">Select your mark</option>
+                        <option value="X">X</option>
+                        <option value="O">O</option>
+                    </select>
+                </div>
+            </article>
+            <article class="player-form">
+                <p class="player-form-name">Player Two</p>
+                <div class="player-form-field">
+                    <label for="name"><i class="fas fa-user-edit"></i></label>
+                    <input type="text" name="name" value="Player Two">
+                </div>
+                <div class="player-form-field">
+                    <label for="mark">Mark</label>
+                    <select name="mark">
+                        <option value="">Select your mark</option>
+                        <option value="X">X</option>
+                        <option value="O">O</option>
+                    </select>
+                </div>
+            </article>
             <button class="btn">play <i class="fas fa-play"></i></button>
-        </div>
+        </section>
+
         
         <div class="game-turn">
             <h2><span>X</span></h2>
         </div> 
         <section class="game-container">
-                <article class="player-information">
+                <article class="player">
+                    <span id="active-player1" class="active"></span>
                     <h3>Player One</h3>
                     <p class="score">score: <span id="score-value">20</span></p>
                 </article>
@@ -67,7 +65,8 @@
         
                     </canvas>
                 </article>
-                <article class="player-information">
+                <article class="player">
+                    <span id="active-player2" class="active"></span>
                     <h3>Player Two</h3>
                     <p class="score">score: <span id="score-value">20</span></p>
                 </article>
@@ -84,6 +83,8 @@
         </section>
         <footer class="footer">
             <p>Developed by Melquiades Bustamante &copy;</p>
+            <p>Desarrollo de Aplicaciones Web.</p>
+            <p>2020</p>
         </footer>
     </main>
 </body>
