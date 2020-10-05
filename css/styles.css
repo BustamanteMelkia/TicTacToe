@@ -131,6 +131,9 @@ body{
 .player p #score-value{
     color: #555555;
 }
+#game{
+    display: none;
+}
 .game-options{
     display: flex;
     justify-content: center;

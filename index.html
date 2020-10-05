@@ -7,7 +7,17 @@
     <script src="https://kit.fontawesome.com/9dab8ca62d.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gloria+Hallelujah&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="js/main.js"></script>
 </head>
+<!--
+    BUSTAMANTE BONFIL MELQUIADES 
+    Mi aplicación consiste en dos capas:
+    La primera capa corresponde al menú principal donde antes del juego los jugadores deben
+    personalizar sus nombres así como elegir ya sea cruz o círculo.
+    Después, al dar click en el botón play, el menú principal se oculta y se muestra el tablero
+    del juego donde se visualiza los datos de los jugadores, puntaje de cada jugador, turno correspondiente y las opciones de 
+    reiniciar la partida y reiniciar el juego eliminando los datos. -->
+
 <body>
     <main class="main">
         <header class="header">
@@ -16,7 +26,7 @@
                 Tic<span>Tac</span>Toe
             </h1>
         </header>
-        <section class="players-form-data">
+        <section id="menu" class="players-form-data">
             <article class="player-form">
                 <p class="player-form-name">Player One</p>
                 <div class="player-form-field">
@@ -47,40 +57,42 @@
                     </select>
                 </div>
             </article>
-            <button class="btn">play <i class="fas fa-play"></i></button>
+            <button id="play" class="btn">play <i class="fas fa-play"></i></button>
         </section>
 
-        
-        <div class="game-turn">
-            <h2><span>X</span></h2>
-        </div> 
-        <section class="game-container">
-                <article class="player">
-                    <span id="active-player1" class="active"></span>
-                    <h3>Player One</h3>
-                    <p class="score">score: <span id="score-value">20</span></p>
-                </article>
-                <article class="board">
-                    <canvas>
-        
-                    </canvas>
-                </article>
-                <article class="player">
-                    <span id="active-player2" class="active"></span>
-                    <h3>Player Two</h3>
-                    <p class="score">score: <span id="score-value">20</span></p>
-                </article>
-        </section>
-        <span id="winner">
+        <div id="game">
+            <div class="game-turn">
+                <h2><span>X</span></h2>
+            </div> 
+            <section class="game-container">
+                    <article class="player">
+                        <span id="active-player1" class="active"></span>
+                        <h3>Player One</h3>
+                        <p class="score">score: <span id="score-value">20</span></p>
+                    </article>
+                    <article class="board">
+                        <canvas>
             
-        </span>
-        <section class="game-options">
-            <div class="wrapper">
-                <button class="btn"><i class="fas fa-home"></i></button>
-                <button class="btn"><i class="fas fa-redo-alt"></i></button>
-            </div>
+                        </canvas>
+                    </article>
+                    <article class="player">
+                        <span id="active-player2" class="active"></span>
+                        <h3>Player Two</h3>
+                        <p class="score">score: <span id="score-value">20</span></p>
+                    </article>
+            </section>
+            <span id="winner">
+                
+            </span>
+            <section class="game-options">
+                <div class="wrapper">
+                    <button class="btn"><i class="fas fa-home"></i></button>
+                    <button class="btn"><i class="fas fa-redo-alt"></i></button>
+                </div>
+    
+            </section>
+        </div>
 
-        </section>
         <footer class="footer">
             <p>Developed by Melquiades Bustamante &copy;</p>
             <p>Desarrollo de Aplicaciones Web.</p>
