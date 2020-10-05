@@ -9,14 +9,6 @@
     <link rel="stylesheet" href="./css/styles.css">
     <script src="js/main.js"></script>
 </head>
-<!--
-    BUSTAMANTE BONFIL MELQUIADES 
-    Mi aplicación consiste en dos capas:
-    La primera capa corresponde al menú principal donde antes del juego los jugadores deben
-    personalizar sus nombres así como elegir ya sea cruz o círculo.
-    Después, al dar click en el botón play, el menú principal se oculta y se muestra el tablero
-    del juego donde se visualiza los datos de los jugadores, puntaje de cada jugador, turno correspondiente y las opciones de 
-    reiniciar la partida y reiniciar el juego eliminando los datos. -->
 
 <body>
     <main class="main">
@@ -28,10 +20,10 @@
         </header>
         <section id="menu" class="players-form-data">
             <article class="player-form">
-                <p class="player-form-name">Player One</p>
+                <p class="player-form-name" id="player-one">Player One</p>
                 <div class="player-form-field">
                     <label for="name"><i class="fas fa-user-edit"></i></label>
-                    <input type="text" name="name" value="Player One">
+                    <input type="text" name="name" id="name-player1" value="Player One">
                 </div>
                 <div class="player-form-field">
                     <label for="mark">Mark</label>
@@ -43,10 +35,10 @@
                 </div>
             </article>
             <article class="player-form">
-                <p class="player-form-name">Player Two</p>
+                <p class="player-form-name" id="player-two">Player Two</p>
                 <div class="player-form-field">
                     <label for="name"><i class="fas fa-user-edit"></i></label>
-                    <input type="text" name="name" value="Player Two">
+                    <input type="text" name="name" id="name-player2" value="Player Two">
                 </div>
                 <div class="player-form-field">
                     <label for="mark">Mark</label>
@@ -57,7 +49,10 @@
                     </select>
                 </div>
             </article>
-            <button id="play" class="btn">play <i class="fas fa-play"></i></button>
+            <span id="error">
+
+            </span>
+            <button id="button-play" class="btn">play <i class="fas fa-play"></i></button>
         </section>
 
         <div id="game">

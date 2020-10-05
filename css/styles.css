@@ -36,6 +36,12 @@ body{
     align-items: inherit;
     justify-content: inherit;
 }
+#error{
+    display: none;
+    color: red;
+    text-align: center;
+    font-size: 1.5rem;
+}
 
 /* HEADER */
 .header{
