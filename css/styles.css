@@ -37,10 +37,11 @@ body{
     justify-content: inherit;
 }
 #error{
-    display: none;
+    display: block;
     color: red;
     text-align: center;
     font-size: 1.5rem;
+    height: 1rem;
 }
 
 /* HEADER */
@@ -63,13 +64,13 @@ body{
 
 /* DATOS DE LOS JUGADORES*/
 .player-form{
-    margin: 4rem 5%;
+    margin: 3rem 5%;
 }
 .player-form-name{
     color: #555555;
-    text-align: center;
+    text-align: left;
     font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 .player-form-field{
     display: flex;
@@ -125,7 +126,7 @@ body{
     width: 80%;
     margin: 0 auto;
     height: 1.5rem;
-    background-color: #2988bc;
+    background-color: unset;
 }
 .player{
     font-family: 'Chewy', cursive;

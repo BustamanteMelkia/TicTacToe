@@ -7,7 +7,6 @@
     <script src="https://kit.fontawesome.com/9dab8ca62d.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gloria+Hallelujah&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
-    <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -20,50 +19,47 @@
         </header>
         <section id="menu" class="players-form-data">
             <article class="player-form">
-                <p class="player-form-name" id="player-one">Player One</p>
+                <p class="player-form-name">Player 1: <span id="tag-player1"></span></p>
                 <div class="player-form-field">
                     <label for="name"><i class="fas fa-user-edit"></i></label>
-                    <input type="text" name="name" id="name-player1" value="Player One">
+                    <input type="text" name="name" id="name-player1" placeholder="Name of player 1">
                 </div>
                 <div class="player-form-field">
                     <label for="mark">Mark</label>
-                    <select name="mark">
-                        <option value="">Select your mark</option>
-                        <option value="X">X</option>
+                    <select name="mark" id="mark-player1">
                         <option value="O">O</option>
+                        <option value="X">X</option>
                     </select>
                 </div>
             </article>
             <article class="player-form">
-                <p class="player-form-name" id="player-two">Player Two</p>
+                <p class="player-form-name">Player 2: <span id="tag-player2"></span></p>
                 <div class="player-form-field">
                     <label for="name"><i class="fas fa-user-edit"></i></label>
-                    <input type="text" name="name" id="name-player2" value="Player Two">
+                    <input type="text" name="name" id="name-player2" placeholder="Name of player 2">
                 </div>
                 <div class="player-form-field">
                     <label for="mark">Mark</label>
-                    <select name="mark">
-                        <option value="">Select your mark</option>
+                    <select name="mark" id="mark-player2">
                         <option value="X">X</option>
                         <option value="O">O</option>
                     </select>
                 </div>
             </article>
             <span id="error">
-
             </span>
             <button id="button-play" class="btn">play <i class="fas fa-play"></i></button>
         </section>
 
         <div id="game">
             <div class="game-turn">
-                <h2><span>X</span></h2>
+                <h2><span id="mark">X</span></h2>
             </div> 
             <section class="game-container">
                     <article class="player">
-                        <span id="active-player1" class="active"></span>
-                        <h3>Player One</h3>
-                        <p class="score">score: <span id="score-value">20</span></p>
+                        <span id="active-p1" class="active"></span>
+                        <h3 id="player1">Player One</h3>
+                        <p class="score">score: <span id="score-p1">0</span></p>
                     </article>
                     <article class="board">
                         <canvas>
@@ -71,9 +67,9 @@
                         </canvas>
                     </article>
                     <article class="player">
-                        <span id="active-player2" class="active"></span>
-                        <h3>Player Two</h3>
-                        <p class="score">score: <span id="score-value">20</span></p>
+                        <span id="active-p2" class="active"></span>
+                        <h3 id="player2">Player Two</h3>
+                        <p class="score">score: <span id="score-p2">0</span></p>
                     </article>
             </section>
             <span id="winner">
@@ -94,5 +90,8 @@
             <p>2020</p>
         </footer>
     </main>
+
+    <!-- SCRIPT -->
+    <script src="js/main.js"></script>
 </body>
 </html>
