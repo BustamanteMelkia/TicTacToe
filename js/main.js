@@ -88,8 +88,10 @@ function nextPlayerMark(currentId) {
 }
 
 function renderGame() {
-    document.querySelector('#player1').innerHTML = playerOne.name;
-    document.querySelector('#player2').innerHTML = playerTwo.name;
+    document.getElementById('player1').innerHTML = playerOne.name;
+    document.getElementById('player2').innerHTML = playerTwo.name;
+    document.getElementById('score-p1').innerHTML = '0';
+    document.getElementById('score-p2').innerHTML = '0';
     drawBoard();
     setTurn();
     canvas.addEventListener('click',onClickCanvas)
@@ -114,7 +116,6 @@ function getCoords(event) {
     return { x, y }
 }
 
-
 function onClickCanvas() {
     let coords = getCoords(event);
     px = Math.trunc(coords.x / tamC);
@@ -126,7 +127,7 @@ function onClickCanvas() {
         counter++;
         if(counter>=5)
             if(existsWinner()){
-                alert("winner; "+turn.name)
+                alert("WINNER: "+turn.name)
                 updateScore();
                 restart()
             }
@@ -236,8 +237,9 @@ function goHome(){
     ctx.clearRect(0, 0, maxX, maxY); // clear canvas
     playerOne = new Player(1,"PlayerOne",'#ed8c72');
     playerTwo = new Player(2,"Player two",'#2988bc');
-    document.querySelector('#tag-player1').innerHTML = this.value;
-    document.querySelector('#tag-player2').innerHTML = this.value;
+    turn=playerOne;
+    document.querySelector('#tag-player1').innerHTML = "";
+    document.querySelector('#tag-player2').innerHTML = "";
     inputNameP1.value="";
     inputNameP2.value="";
     menu.style.display = 'block';
