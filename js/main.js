@@ -1,45 +1,43 @@
 // VARIABLES
+const GRID_SIZE = 3;
 const menu = document.querySelector('#menu');
 const game = document.querySelector('#game');
 const buttonPlay = document.querySelector('#button-play');
-const GRID_SIZE = 3;
 const canvas = document.getElementById("canvas");
+const inputNameP1 = document.querySelector('#name-player1');
+const inputNameP2 = document.querySelector('#name-player2');
+
 let ctx = canvas.getContext("2d");  // get context 2D
 let maxX = canvas.width;
 let maxY = canvas.height;
 let tamC = 0;
 let px, py;
 let grid;
-
 let turn;
-let marksColor = new Map();
-marksColor.set('X', '#ed8c72');
-marksColor.set('O', '#2988bc')
+let counter= 0;
 
-function Player(id, name) {
+function Player(id, name, color) {
     this.id= id;
     this.name= name;
     this.mark = '';
     this.score = 0;
-    this.colorMark = function (){
-        return marksColor.get(this.mark);
-    }
+    this.color = color;
 }
-let playerOne = new Player(1,"PlayerOne");
-let playerTwo = new Player(2,"Player two");
+let playerOne = new Player(1,"PlayerOne",'#ed8c72');
+let playerTwo = new Player(2,"Player two",'#2988bc');
 
 buttonPlay.addEventListener('click', onClickButtonPlay);
 
-document.querySelector('#name-player1').addEventListener('blur', validateData);
-document.querySelector('#name-player2').addEventListener('blur', validateData);
+inputNameP1.addEventListener('blur', validateData);
+inputNameP2.addEventListener('blur', validateData);
 
 // keyup event when player one enters her name
-document.querySelector('#name-player1').addEventListener('keyup', function () {
+inputNameP1.addEventListener('keyup', function () {
     document.querySelector('#tag-player1').innerHTML = this.value;   // update view
     playerOne.name = this.value;
 });
 // keyup event when player two enters her name.
-document.querySelector('#name-player2').addEventListener('keyup', function () {
+inputNameP2.addEventListener('keyup', function () {
     document.querySelector('#tag-player2').innerHTML = this.value;
     playerTwo.name = this.value;
 });
@@ -56,6 +54,8 @@ function onClickButtonPlay() {
         menu.style.display = 'none';
         game.style.display = 'block';
         renderGame()
+        document.getElementById('restart').addEventListener('click',restart);
+        document.getElementById('home').addEventListener('click',goHome);
     } else
         document.querySelector('#error').innerHTML = 'Empty fields';
 }
@@ -80,7 +80,7 @@ function onChangeMark() {
 }
 
 function dataIsValid() {
-    return (playerOne.name != '' && playerTwo.name != '') ? true : false
+    return (inputNameP1.value != '' && inputNameP2.value != '') ? true : false
 }
 
 function nextPlayerMark(currentId) {
@@ -96,11 +96,9 @@ function renderGame() {
 }
 
 function setTurn(){
-    const currentMark = document.getElementById('mark');
-    const active = document.getElementById('active-p'+turn.id);
-    currentMark.innerHTML = turn.mark;
-    currentMark.style.color = turn.colorMark();
-    active.style.backgroundColor = turn.colorMark()
+    const currentPlayer = document.getElementById('current-player');
+    currentPlayer.innerHTML = turn.name
+    currentPlayer.style.color = turn.color;
 }
 
 function getCoords(event) {
@@ -122,17 +120,22 @@ function onClickCanvas() {
     px = Math.trunc(coords.x / tamC);
     py = Math.trunc(coords.y / tamC);
 
-    if(grid[px][py] == ""){
-        grid[px][py] = turn.mark;
+    if(grid[py][px] == ""){
         drawMark(turn.mark)
-        if(turn.id == 1)
-            turn = playerTwo
-        else
-            turn = playerOne
+        // get next turn
+        counter++;
+        if(counter>=5)
+            if(existsWinner()){
+                alert("winner; "+turn.name)
+                updateScore();
+                restart()
+            }
+        turn = turn.id== 1 ? playerTwo : playerOne 
         setTurn()
     }
 }
 function drawMark(mark){
+    grid[py][px] = mark;
     switch(mark){
         case 'X': tache()
         break
@@ -158,6 +161,13 @@ function drawBoard() {
             grid[i][j] = "";
     }
 }
+
+function updateScore(){
+    turn.score += 10;
+    let score = document.getElementById('score-p'+turn.id);
+    score.innerHTML = turn.score
+}
+
 function tache() {
     ctx.beginPath();
 
@@ -175,7 +185,61 @@ function circulo() {
     ctx.arc((px * tamC) + (tamC * .5), (py * tamC) + (tamC * .5), tamC * .4, 0, 2 * Math.PI);
     ctx.stroke();
 }
-function verifica() { }
-function reiniciar() { }
-function ganar() { }
-function perder() { }
+function existsWinner() { 
+    if(horizontal())    return true;
+    else if(vertical()) return true;
+    else if(Math.abs(px-py) != 1){
+        if(primaryDiagonal())   return true;
+        else if(secundaryDiagonal())    return true;
+    }
+}
+function horizontal(){
+    let markCounter = 0;
+    for(let i=0; i<GRID_SIZE;i++)
+        if(grid[py][i]== turn.mark)
+            markCounter++;
+    return markCounter==GRID_SIZE ? true : false; 
+}
+function vertical(){
+    let markCounter = 0;
+    for(let i=0; i<GRID_SIZE;i++)
+        if(grid[i][px]== turn.mark)
+            markCounter++;
+    return markCounter==GRID_SIZE ? true : false; 
+}
+function primaryDiagonal(){
+    let markCounter= 0;
+    for(let i=0; i<GRID_SIZE;i++)
+        if(grid[i][i]==turn.mark)
+            markCounter++
+    return markCounter==GRID_SIZE ? true : false; 
+}
+function secundaryDiagonal(){
+    let markCounter= 0;
+    let index = GRID_SIZE-1;
+    for(let i=0; i< GRID_SIZE; i++){
+        if(grid[i][index]==turn.mark)
+            markCounter++;
+        index--;
+    }
+    return markCounter==GRID_SIZE ? true : false; 
+}
+
+function restart(){
+    counter = 0;
+    ctx.clearRect(0, 0, maxX, maxY); // clear canvas
+    drawBoard();
+}
+
+function goHome(){
+    counter=0;
+    ctx.clearRect(0, 0, maxX, maxY); // clear canvas
+    playerOne = new Player(1,"PlayerOne",'#ed8c72');
+    playerTwo = new Player(2,"Player two",'#2988bc');
+    document.querySelector('#tag-player1').innerHTML = this.value;
+    document.querySelector('#tag-player2').innerHTML = this.value;
+    inputNameP1.value="";
+    inputNameP2.value="";
+    menu.style.display = 'block';
+    game.style.display = 'none';
+}
