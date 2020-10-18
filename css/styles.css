@@ -42,7 +42,6 @@ body{
     font-size: 1.5rem;
     height: 1rem;
 }
-
 /* HEADER */
 .header{
     background-color: #2f496e;
@@ -163,6 +162,35 @@ body{
     text-align: center;
     color: #e1e1e1;
 }
+
+/* ALERT */
+.alert-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(55, 55, 55, 0.8);
+    display: flex;
+    justify-content: center;
+    padding-top: 12rem;
+    display: none;
+}
+.alert{
+    position: relative;
+    background-color: #ed8c72;
+    border-radius: 3px;
+    width: 25rem;
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alert-message{
+    text-align: center;
+    font-size: 2.5rem;
+    color: #e1e1e1;
+}
 @media screen and (min-width: 320px){
     .player{
         font-size: 2rem;
@@ -223,3 +251,4 @@ body{
         font-size: 4rem;
     }
 }
+

@@ -6,6 +6,7 @@ const buttonPlay = document.getElementById('button-play');
 const canvas = document.getElementById("canvas");
 const inputNameP1 = document.getElementById('name-player1');
 const inputNameP2 = document.getElementById('name-player2');
+const alert = document.getElementById('alert');
 
 let ctx = canvas.getContext("2d");  // get context 2D
 let maxX = canvas.width;
@@ -123,14 +124,26 @@ function onClickCanvas() {
 
     if(grid[py][px] == ""){
         drawMark(turn.mark)
-        // get next turn
+
         counter++;
-        if(counter>=5)
+        if(counter>=5){
             if(existsWinner()){
-                alert("WINNER: "+turn.name)
+                console.log("Existe ganador");
+                showMessage("WINNER: "+turn.name);
+                alert.addEventListener('click',function(){
+                    this.style.display = 'none';
+                    restart();
+                });
                 updateScore();
-                restart()
             }
+            if(counter == 9){
+                showMessage('EMPATE');
+                alert.addEventListener('click',function(){
+                    this.style.display = 'none';
+                    restart()
+                });
+            }
+        }
         turn = turn.id== 1 ? playerTwo : playerOne 
         setTurn()
     }
@@ -161,6 +174,11 @@ function drawBoard() {
         for (var j = 0; j < GRID_SIZE; j++)
             grid[i][j] = "";
     }
+}
+function showMessage(message){
+    let alertMessage = document.getElementById('alert-message');
+    alert.style.display = 'flex';
+    alertMessage.innerHTML =message;
 }
 
 function updateScore(){
