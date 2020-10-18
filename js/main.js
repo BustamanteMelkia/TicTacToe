@@ -1,11 +1,11 @@
 // VARIABLES
 const GRID_SIZE = 3;
-const menu = document.querySelector('#menu');
-const game = document.querySelector('#game');
-const buttonPlay = document.querySelector('#button-play');
+const menu = document.getElementById('menu');
+const game = document.getElementById('game');
+const buttonPlay = document.getElementById('button-play');
 const canvas = document.getElementById("canvas");
-const inputNameP1 = document.querySelector('#name-player1');
-const inputNameP2 = document.querySelector('#name-player2');
+const inputNameP1 = document.getElementById('name-player1');
+const inputNameP2 = document.getElementById('name-player2');
 
 let ctx = canvas.getContext("2d");  // get context 2D
 let maxX = canvas.width;
@@ -33,17 +33,17 @@ inputNameP2.addEventListener('blur', validateData);
 
 // keyup event when player one enters her name
 inputNameP1.addEventListener('keyup', function () {
-    document.querySelector('#tag-player1').innerHTML = this.value;   // update view
+    document.getElementById('tag-player1').innerHTML = this.value;   // update view
     playerOne.name = this.value;
 });
 // keyup event when player two enters her name.
 inputNameP2.addEventListener('keyup', function () {
-    document.querySelector('#tag-player2').innerHTML = this.value;
+    document.getElementById('tag-player2').innerHTML = this.value;
     playerTwo.name = this.value;
 });
 
-document.querySelector('#mark-player1').addEventListener('change', onChangeMark);
-document.querySelector('#mark-player2').addEventListener('change', onChangeMark);
+document.getElementById('mark-player1').addEventListener('change', onChangeMark);
+document.getElementById('mark-player2').addEventListener('change', onChangeMark);
 
 //  FUNCTIONS 
 function onClickButtonPlay() {
@@ -57,11 +57,11 @@ function onClickButtonPlay() {
         document.getElementById('restart').addEventListener('click',restart);
         document.getElementById('home').addEventListener('click',goHome);
     } else
-        document.querySelector('#error').innerHTML = 'Empty fields';
+        document.getElementById('error').innerHTML = 'Empty fields';
 }
 
 function validateData() {
-    const error = document.querySelector('#error');
+    const error = document.getElementById('error');
     if (this.value == '') {
         error.innerHTML = 'Empty field!';
         this.style.borderColor = 'red'
@@ -238,8 +238,8 @@ function goHome(){
     playerOne = new Player(1,"PlayerOne",'#ed8c72');
     playerTwo = new Player(2,"Player two",'#2988bc');
     turn=playerOne;
-    document.querySelector('#tag-player1').innerHTML = "";
-    document.querySelector('#tag-player2').innerHTML = "";
+    document.getElementById('tag-player1').innerHTML = "";
+    document.getElementById('tag-player2').innerHTML = "";
     inputNameP1.value="";
     inputNameP2.value="";
     menu.style.display = 'block';
