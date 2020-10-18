@@ -128,15 +128,13 @@ function onClickCanvas() {
         counter++;
         if(counter>=5){
             if(existsWinner()){
-                console.log("Existe ganador");
                 showMessage("WINNER: "+turn.name);
                 alert.addEventListener('click',function(){
                     this.style.display = 'none';
                     restart();
                 });
                 updateScore();
-            }
-            if(counter == 9){
+            }else if(counter == 9 ){
                 showMessage('EMPATE');
                 alert.addEventListener('click',function(){
                     this.style.display = 'none';
