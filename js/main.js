@@ -8,14 +8,14 @@ const inputNameP1 = document.getElementById('name-player1');
 const inputNameP2 = document.getElementById('name-player2');
 const alert = document.getElementById('alert');
 
-let ctx = canvas.getContext("2d");  // get context 2D
-let maxX = canvas.width;
-let maxY = canvas.height;
-let tamC = 0;
-let px, py;
-let grid;
-let turn;
-let counter= 0;
+var ctx = canvas.getContext("2d");  // get context 2D
+var maxX = canvas.width;
+var maxY = canvas.height;
+var tamC = 0;
+var px, py;
+var grid;
+var turn;
+var counter= 0;
 
 function Player(id, name, color) {
     this.id= id;
@@ -24,8 +24,8 @@ function Player(id, name, color) {
     this.score = 0;
     this.color = color;
 }
-let playerOne = new Player(1,"PlayerOne",'#ed8c72');
-let playerTwo = new Player(2,"Player two",'#2988bc');
+var playerOne = new Player(1,"PlayerOne",'#ed8c72');
+var playerTwo = new Player(2,"Player two",'#2988bc');
 
 buttonPlay.addEventListener('click', onClickButtonPlay);
 
@@ -51,12 +51,13 @@ function onClickButtonPlay() {
     if (dataIsValid()) {
         playerOne.mark = document.getElementById("mark-player1").value;
         playerTwo.mark = document.getElementById("mark-player2").value;
-        turn = playerOne
+        turn = playerOne;
         menu.style.display = 'none';
         game.style.display = 'block';
         renderGame()
-        document.getElementById('restart').addEventListener('click',restart);
         document.getElementById('home').addEventListener('click',goHome);
+        document.getElementById('reset').addEventListener('click',reset);
+        document.getElementById('restart').addEventListener('click',restart);
     } else
         document.getElementById('error').innerHTML = 'Empty fields';
 }
@@ -260,4 +261,10 @@ function goHome(){
     inputNameP2.value="";
     menu.style.display = 'block';
     game.style.display = 'none';
+}
+function reset(){
+    document.getElementById('score-p1').innerHTML= '0';
+    document.getElementById('score-p2').innerHTML= '0';
+    playerOne.score = 0;
+    playerTwo.score = 0;
 }

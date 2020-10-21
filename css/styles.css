@@ -25,6 +25,10 @@ body{
     font-size: 2rem;
     width: 90%;
     cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+.btn:hover{
+    background-color: #2f496e;
 }
 .wrapper{
     max-width: 120rem;
@@ -42,6 +46,7 @@ body{
     font-size: 1.5rem;
     height: 1rem;
 }
+
 /* HEADER */
 .header{
     background-color: #2f496e;
@@ -94,7 +99,7 @@ body{
 }
 /* GAME */
 .game-turn{
-    margin: 1.5rem 0;
+    margin: 4rem 0 1.5rem 0;
 }
 .game-turn h2{
     font-family: 'Chewy', cursive;
@@ -147,14 +152,21 @@ body{
     margin: 2rem 0;
     padding: 0.5rem 1.5rem;
     font-size: 1.8rem;
-}
-.game-options .btn:first-of-type{
     margin-right: 1rem;
+}
+.game-options .btn:last-of-type{
+    margin-right: 0;
 }
 .game-options .btn i{
     font-size: 2.4rem;
 }
-.footer{
+.filling{
+    height: 7rem;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background-color: #555555;
     padding: 1rem 0;
 }
@@ -213,8 +225,11 @@ body{
     .board{
         margin: 0 2rem;
     }
-    .game-options .btn:first-of-type{
+    .game-options .btn{
         margin-right: 3rem;
+    }
+    .game-options .btn:last-of-type{
+        margin-right: 0;
     }
 
 }
@@ -239,8 +254,11 @@ body{
         padding: 0.8rem 2.2rem;
         font-size: 1.8rem;
     }
-    .game-options .btn:first-of-type{
+    .game-options .btn{
         margin-right: 5rem;
+    }
+    .game-options .btn:last-of-type{
+        margin-right: 0;
     }
     .game-options .btn i{
         font-size: 2.6rem;
