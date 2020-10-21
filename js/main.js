@@ -159,6 +159,8 @@ function drawMark(mark){
 
 function drawBoard() {
     tamC = Math.round(maxX / GRID_SIZE);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "black";
     for (let i = 1; i < GRID_SIZE; i++) {
         ctx.beginPath();
         ctx.moveTo(i * tamC, 0);
@@ -188,19 +190,24 @@ function updateScore(){
 
 function tache() {
     ctx.beginPath();
+    ctx.strokeStyle = turn.color;
+    ctx.lineWidth = 5;
 
-    ctx.moveTo((px * tamC) + (tamC * .1), ((py + 1) * tamC) - (tamC * .1));         /*    /    */
-    ctx.lineTo(((px + 1) * tamC) - (tamC * .1), ((py) * tamC) + (tamC * .1));       /*   /     */
+    ctx.moveTo((px * tamC) + (tamC * .2), ((py + 1) * tamC) - (tamC * .2));         /*    /    */
+    ctx.lineTo(((px + 1) * tamC) - (tamC * .2), ((py) * tamC) + (tamC * .2));       /*   /     */
 
-    ctx.moveTo((px * tamC) + (tamC * .1), ((py) * tamC) + (tamC * .1));             /*   \    */
-    ctx.lineTo(((px + 1) * tamC) - (tamC * .1), ((py + 1) * tamC) - (tamC * .1));   /*    \    */
+    ctx.moveTo((px * tamC) + (tamC * .2), ((py) * tamC) + (tamC * .2));             /*   \    */
+    ctx.lineTo(((px + 1) * tamC) - (tamC * .2), ((py + 1) * tamC) - (tamC * .2));   /*    \    */
 
     ctx.stroke();
 }
 
 function circulo() {
     ctx.beginPath();
-    ctx.arc((px * tamC) + (tamC * .5), (py * tamC) + (tamC * .5), tamC * .4, 0, 2 * Math.PI);
+    ctx.strokeStyle = turn.color;
+    ctx.lineWidth = 5;
+
+    ctx.arc((px * tamC) + (tamC * .5), (py * tamC) + (tamC * .5), tamC * .32, 0, 2 * Math.PI);
     ctx.stroke();
 }
 function existsWinner() { 
