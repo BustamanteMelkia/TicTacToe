@@ -179,7 +179,7 @@ function drawBoard() {
 function showMessage(message){
     let alertMessage = document.getElementById('alert-message');
     alert.style.display = 'flex';
-    alertMessage.innerHTML =message;
+    alertMessage.innerHTML = message;
 }
 
 function updateScore(){
@@ -211,12 +211,22 @@ function circulo() {
     ctx.stroke();
 }
 function existsWinner() { 
-    if(horizontal())    return true;
-    else if(vertical()) return true;
-    else if(Math.abs(px-py) != 1){
-        if(primaryDiagonal())   return true;
-        else if(secundaryDiagonal())    return true;
+    if(horizontal()){
+        horizontalLine()
+        return true;
+    }else if(vertical()){
+        verticalLine();
+        return true;
+    }else if(Math.abs(px-py) != 1){
+        if(primaryDiagonal()){
+            diagonalLine('primary');
+            return true;
+        }else if(secundaryDiagonal()){
+            diagonalLine('secundary');
+            return true;
+        }
     }
+    return false;
 }
 function horizontal(){
     let markCounter = 0;
@@ -248,6 +258,33 @@ function secundaryDiagonal(){
         index--;
     }
     return markCounter==GRID_SIZE ? true : false; 
+}
+
+function horizontalLine(){
+    ctx.beginPath();
+    ctx.moveTo(0, (py*tamC) + (tamC/2));
+    ctx.lineTo(canvas.width, (py*tamC) + (tamC/2));
+    ctx.stroke();
+}
+function verticalLine(){
+    ctx.beginPath();
+    ctx.moveTo((px*tamC) + (tamC/2),0);
+    ctx.lineTo((px*tamC) + (tamC/2), canvas.width);
+    ctx.stroke();
+}
+function diagonalLine(type){
+    ctx.beginPath();
+    switch(type){
+        case 'primary':
+            ctx.moveTo(0,0);
+            ctx.lineTo(canvas.width,canvas.width);
+        break;
+        case 'secundary':
+            ctx.moveTo(0,canvas.width);
+            ctx.lineTo(canvas.width, 0);
+        break;
+    }
+    ctx.stroke();
 }
 
 function restart(){
