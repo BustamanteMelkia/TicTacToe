@@ -273,28 +273,40 @@ function primaryDiagonal(){
     let j =maxY;
 
     while(i>=minX && j>=minY){
-        console.log(grid[2][1])
-        console.log(j," ",i, grid[j][i])
-        if(grid[j][i]==turn.mark){   markCounter++;}
-        else{    markCounter=0;}
-        if(markCounter == 4){
+        if(grid[j][i]==turn.mark)   markCounter++;
+        else    markCounter=0;
+        if(markCounter == 4)
             return true;
-        }
         i--;
         j--;
     }
-    console.log(" fin");
     return false 
 }
 function secundaryDiagonal(){
-    let markCounter= 0;
-    let index = GRID_SIZE-1;
-    for(let i=0; i< GRID_SIZE; i++){
-        if(grid[i][index]==turn.mark)
-            markCounter++;
-        index--;
+    let minX = px-3;
+    let maxX = px+3;
+    let minY = py-3;
+    let maxY = py+3;
+    let markCounter = 0;
+
+    if(minX<0)   minX=0;
+    if(minY<0)   minY=0;
+
+    if(maxX>=GRID_SIZE)  maxX= GRID_SIZE-1;
+    if(maxY>=GRID_SIZE)  maxY= GRID_SIZE-1;
+
+    let i=minX;// columnas
+    let j =maxY; // filas
+
+    while(i<=maxX && j>=minY){
+        if(grid[j][i]==turn.mark)   markCounter++;
+        else    markCounter=0;
+        if(markCounter == 4)
+            return true;
+        i++;
+        j--;
     }
-    return markCounter==GRID_SIZE ? true : false; 
+    return false
 }
 
 function restart(){
