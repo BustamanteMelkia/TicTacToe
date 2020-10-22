@@ -1,5 +1,5 @@
 // VARIABLES
-const GRID_SIZE = 3;
+const GRID_SIZE = 6;
 const menu = document.getElementById('menu');
 const game = document.getElementById('game');
 const buttonPlay = document.getElementById('button-play');
@@ -12,10 +12,11 @@ var ctx = canvas.getContext("2d");  // get context 2D
 var maxX = canvas.width;
 var maxY = canvas.height;
 var tamC = 0;
-var px, py;
+var px= 0;
+let py= 0;
+var counter = 0
 var grid;
 var turn;
-var counter= 0;
 
 function Player(id, name, color) {
     this.id= id;
@@ -105,23 +106,22 @@ function setTurn(){
     currentPlayer.style.color = turn.color;
 }
 
+// Obtiene la posición en la matriz donde se dibujará la marca
 function getCoords(event) {
-    let x = new Number();
-    let y = new Number();
-
-    if (event.x != undefined && event.y != undefined) {
-        x = event.x;
-        y = event.y;
-    }
-    x -= canvas.offsetLeft;
-    y -= canvas.offsetTop;
-    return { x, y }
+    let x = event.x - canvas.offsetLeft;
+    let i = 0;
+    let j = Math.trunc(x / tamC);
+    // Buscar el espacio más bajo de la columna
+    for(i=GRID_SIZE-1; i>0;i--)
+        if(grid[i][j] == "")
+            break;
+    return { i, j }
 }
 
 function onClickCanvas() {
     let coords = getCoords(event);
-    px = Math.trunc(coords.x / tamC);
-    py = Math.trunc(coords.y / tamC);
+    px = coords.j;
+    py = coords.i;
 
     if(grid[py][px] == ""){
         drawMark(turn.mark)
@@ -135,7 +135,7 @@ function onClickCanvas() {
                     restart();
                 });
                 updateScore();
-            }else if(counter == 9 ){
+            }else if(counter == GRID_SIZE*GRID_SIZE ){
                 showMessage('EMPATE');
                 alert.addEventListener('click',function(){
                     this.style.display = 'none';
@@ -213,31 +213,78 @@ function circulo() {
 function existsWinner() { 
     if(horizontal())    return true;
     else if(vertical()) return true;
-    else if(Math.abs(px-py) != 1){
+    else {
         if(primaryDiagonal())   return true;
         else if(secundaryDiagonal())    return true;
     }
+    return false;
 }
 function horizontal(){
+    let min = px-3;
+    let max = px+3;
     let markCounter = 0;
-    for(let i=0; i<GRID_SIZE;i++)
-        if(grid[py][i]== turn.mark)
+
+    if(min<0)   min=0;
+    if(max>=GRID_SIZE)  max= GRID_SIZE-1;
+
+    // console.log("horizontal; "+min," ",max);
+    
+    for(let j=min; j<=max;j++){
+        if(grid[py][j]== turn.mark)
             markCounter++;
-    return markCounter==GRID_SIZE ? true : false; 
+        else
+            markCounter=0;
+        if(markCounter==4)
+            return true;
+    }
+    return false; 
 }
 function vertical(){
+    let max = py+3;
     let markCounter = 0;
-    for(let i=0; i<GRID_SIZE;i++)
+    if(max>=GRID_SIZE)  max= GRID_SIZE-1;
+
+    // console.log("Vertical: "+py," ",max);
+
+    for(let i=py; i<GRID_SIZE;i++){
         if(grid[i][px]== turn.mark)
             markCounter++;
-    return markCounter==GRID_SIZE ? true : false; 
+        else
+            markCounter=0;
+        if(markCounter==4)
+            return true;
+    }
+    return false;
 }
 function primaryDiagonal(){
-    let markCounter= 0;
-    for(let i=0; i<GRID_SIZE;i++)
-        if(grid[i][i]==turn.mark)
-            markCounter++
-    return markCounter==GRID_SIZE ? true : false; 
+    let minX = px-3;
+    let maxX = px+3;
+    let minY = py-3;
+    let maxY = py+3;
+    let markCounter = 0;
+
+    if(minX<0)   minX=0;
+    if(minY<0)   minY=0;
+
+    if(maxX>=GRID_SIZE)  maxX= GRID_SIZE-1;
+    if(maxY>=GRID_SIZE)  maxY= GRID_SIZE-1;
+
+    let i=maxX;
+    let j =maxY;
+
+    while(i>=minX && j>=minY){
+        console.log(grid[2][1])
+        console.log(j," ",i, grid[j][i])
+        if(grid[j][i]==turn.mark){   markCounter++;}
+        else{    markCounter=0;}
+        if(markCounter == 4){
+            return true;
+        }
+        i--;
+        j--;
+    }
+    console.log(" fin");
+    return false 
 }
 function secundaryDiagonal(){
     let markCounter= 0;
