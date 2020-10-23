@@ -66,6 +66,9 @@ body{
 }
 
 /* DATOS DE LOS JUGADORES*/
+.players-form-data{
+    padding-top: 5rem;
+}
 .player-form{
     margin: 3rem 5%;
 }
