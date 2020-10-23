@@ -84,8 +84,6 @@ body{
 }
 .player-form-field{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 1rem;
 }
 .player-form-field:last-of-type{
@@ -96,7 +94,7 @@ label{
     font-size: 3.5rem;
     margin-right: 1rem;
 }
-.player-form-field input{
+input{
     height: 5rem;
     color: #555555;
     font-size: 1.7rem;
@@ -105,18 +103,24 @@ label{
     flex: 1;
     padding-left: 1rem;
 }
-.radio-button{
-    width: 10rem;
+
+.radio-button-container{
+    width: 7rem;
     display: flex;
-    flex-direction: column;
-    text-align: center;
+    align-items: center;
+    margin: 0 2rem;
 }
-.radio-button label{
+input[type=radio]{
+    height: 2rem;
+    padding-left: 0;
+}
+.radio-button-container label{
     color: #ed8c72;
-    font-weight: bold;
     margin-right: 0;
+    font-size: 5rem;
 }
-/* GAME */
+
+/*********** GAME *************/
 .game-turn{
     margin: 4rem 0 1.5rem 0;
 }
