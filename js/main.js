@@ -7,6 +7,7 @@ const canvas = document.getElementById("canvas");
 const inputNameP1 = document.getElementById('name-player1');
 const inputNameP2 = document.getElementById('name-player2');
 const alert = document.getElementById('alert');
+const marks = document.querySelectorAll('input[type="radio"]');
 
 var ctx = canvas.getContext("2d");  // get context 2D
 var maxX = canvas.width;
@@ -17,40 +18,33 @@ var grid;
 var turn;
 var counter= 0;
 
-function Player(id, name, color) {
+// Objeto de tipo jugador
+function Player(id, name,mark, color) {
     this.id= id;
     this.name= name;
-    this.mark = '';
+    this.mark = mark;
     this.score = 0;
     this.color = color;
 }
-var playerOne = new Player(1,"PlayerOne",'#ed8c72');
-var playerTwo = new Player(2,"Player two",'#2988bc');
+// Crear los objetos de tipo jugador.
+// Se asignan valores predeterminados. En la interfaz gráfica el usuario puede modificar los datos.
+var playerOne = new Player(1,"PlayerOne",'X','#ed8c72');
+var playerTwo = new Player(2,"Player two",'O','#2988bc');
+
 
 buttonPlay.addEventListener('click', onClickButtonPlay);
 
+// Agregar eventos a los campos de nombre para validar los datos
 inputNameP1.addEventListener('blur', validateData);
 inputNameP2.addEventListener('blur', validateData);
 
-// keyup event when player one enters her name
-inputNameP1.addEventListener('keyup', function () {
-    document.getElementById('tag-player1').innerHTML = this.value;   // update view
-    playerOne.name = this.value;
-});
-// keyup event when player two enters her name.
-inputNameP2.addEventListener('keyup', function () {
-    document.getElementById('tag-player2').innerHTML = this.value;
-    playerTwo.name = this.value;
-});
+// Agregar evento a cada radio button para seleccionar la marca.
+marks.forEach( mark => mark.addEventListener('click',onclickMark));
 
-document.getElementById('mark-player1').addEventListener('change', onChangeMark);
-document.getElementById('mark-player2').addEventListener('change', onChangeMark);
-
-//  FUNCTIONS 
 function onClickButtonPlay() {
     if (dataIsValid()) {
-        playerOne.mark = document.getElementById("mark-player1").value;
-        playerTwo.mark = document.getElementById("mark-player2").value;
+        playerOne.name = inputNameP1.value;
+        playerTwo.name = inputNameP2.value;
         turn = playerOne;
         menu.style.display = 'none';
         game.style.display = 'block';
@@ -73,20 +67,34 @@ function validateData() {
             error.innerHTML = '';
     }
 }
-function onChangeMark() {
-    let nextMark = nextPlayerMark(this.id);
-    if (this.value === 'X')
-        document.getElementById(nextMark).value = 'O';
-    else
-        document.getElementById(nextMark).value = 'X';
+
+function onclickMark() {
+    switch(this.className){
+        case 'mark-player1':
+            playerOne.mark = this.value;
+            if(this.value == 'X'){
+                marks[3].checked = true;
+                playerTwo.mark= 'O';
+            }else{
+                marks[2].checked = true;
+                playerTwo.mark= 'X';
+            }
+        break;
+        case 'mark-player2':
+            playerTwo.mark = this.value;
+            if(this.value == 'X'){
+                marks[1].checked = true;
+                playerOne.mark= 'O'; 
+            }else{
+                marks[0].checked = true;
+                playerOne.mark= 'X';
+            }
+        break;
+    }
 }
 
 function dataIsValid() {
     return (inputNameP1.value != '' && inputNameP2.value != '') ? true : false
-}
-
-function nextPlayerMark(currentId) {
-    return currentId == 'mark-player1' ? 'mark-player2' : 'mark-player1'
 }
 
 function renderGame() {
@@ -228,6 +236,7 @@ function existsWinner() {
     }
     return false;
 }
+// Vericar si el jugador ganó de manera horizontal
 function horizontal(){
     let markCounter = 0;
     for(let i=0; i<GRID_SIZE;i++)
@@ -235,6 +244,7 @@ function horizontal(){
             markCounter++;
     return markCounter==GRID_SIZE ? true : false; 
 }
+// Vericar si el jugador ganó de manera vertical
 function vertical(){
     let markCounter = 0;
     for(let i=0; i<GRID_SIZE;i++)
@@ -296,11 +306,9 @@ function restart(){
 function goHome(){
     counter=0;
     ctx.clearRect(0, 0, maxX, maxY); // clear canvas
-    playerOne = new Player(1,"PlayerOne",'#ed8c72');
-    playerTwo = new Player(2,"Player two",'#2988bc');
+    playerOne = new Player(1,"PlayerOne",playerOne.mark,'#ed8c72');
+    playerTwo = new Player(2,"Player two",playerTwo.mark,'#2988bc');
     turn=playerOne;
-    document.getElementById('tag-player1').innerHTML = "";
-    document.getElementById('tag-player2').innerHTML = "";
     inputNameP1.value="";
     inputNameP2.value="";
     menu.style.display = 'block';

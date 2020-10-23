@@ -19,31 +19,35 @@
         </header>
         <section id="menu" class="players-form-data">
             <article class="player-form">
-                <p class="player-form-name">Player 1: <span id="tag-player1"></span></p>
                 <div class="player-form-field">
                     <label for="name"><i class="fas fa-user-edit"></i></label>
                     <input type="text" name="name" id="name-player1" placeholder="Name of player 1">
                 </div>
                 <div class="player-form-field">
-                    <label for="mark">Mark</label>
-                    <select name="mark" id="mark-player1">
-                        <option value="O">O</option>
-                        <option value="X">X</option>
-                    </select>
+                    <div class="radio-button">
+                        <label for="markX">X</label>
+                        <input type="radio" class="mark-player1" checked name="mark-player1" value="X">
+                    </div>
+                    <div class="radio-button">
+                        <label for="markO"><i class="far fa-circle"></i></label>
+                        <input type="radio" class="mark-player1" name="mark-player1" value="O">
+                    </div>
                 </div>
             </article>
             <article class="player-form">
-                <p class="player-form-name">Player 2: <span id="tag-player2"></span></p>
                 <div class="player-form-field">
                     <label for="name"><i class="fas fa-user-edit"></i></label>
                     <input type="text" name="name" id="name-player2" placeholder="Name of player 2">
                 </div>
                 <div class="player-form-field">
-                    <label for="mark">Mark</label>
-                    <select name="mark" id="mark-player2">
-                        <option value="X">X</option>
-                        <option value="O">O</option>
-                    </select>
+                    <div class="radio-button">
+                        <label for="markX">X</label>
+                        <input type="radio" class="mark-player2" name="mark-player2" value="X">
+                    </div>
+                    <div class="radio-button">
+                        <label for="markO"><i class="far fa-circle"></i></label>
+                        <input type="radio" class="mark-player2" checked name="mark-player2" value="O">
+                    </div>
                 </div>
             </article>
             <span id="error">
@@ -59,9 +63,10 @@
                     <article class="player">
                         <h3 id="player1">Player One</h3>
                         <p class="score">score: <span id="score-p1">0</span></p>
+
                     </article>
                     <article class="board">
-                        <canvas id="canvas" width="260" height="260">
+                        <canvas id="canvas" width="280" height="280">
             
                         </canvas>
                     </article>
@@ -71,7 +76,6 @@
                     </article>
             </section>
             <span id="winner">
-                
             </span>
             <section class="game-options">
                 <div class="wrapper">
@@ -79,7 +83,6 @@
                     <button id="reset" class="btn"><i class="far fa-calendar-times"></i></i></button>
                     <button id="restart" class="btn"><i class="fas fa-redo-alt"></i></button>
                 </div>
-                
             </section>
         </div>
         <div class="filling">   </div>

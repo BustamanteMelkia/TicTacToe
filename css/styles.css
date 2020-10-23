@@ -75,27 +75,43 @@ body{
     font-size: 1.8rem;
     margin-bottom: 1rem;
 }
+.player-form-name span{
+    color: #2988bc;
+    font-size: 2.5rem;
+}
 .player-form-field{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 }
-.player-form-field label{
+.player-form-field:last-of-type{
+    justify-content: center;
+}
+label{
     color: #2f496e;
     font-size: 3.5rem;
     margin-right: 1rem;
 }
-.player-form-field:last-of-type label{
-    font-size: 1.9rem;
-}
-.player-form-field select, .player-form-field input{
+.player-form-field input{
     height: 5rem;
     color: #555555;
     font-size: 1.7rem;
     border-radius: 3px;
     border: 2px solid #555555;
     flex: 1;
+    padding-left: 1rem;
+}
+.radio-button{
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.radio-button label{
+    color: #ed8c72;
+    font-weight: bold;
+    margin-right: 0;
 }
 /* GAME */
 .game-turn{
