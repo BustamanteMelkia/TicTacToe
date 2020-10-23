@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TicTacToe</title>
+    <title>Conecta 4</title>
     <script src="https://kit.fontawesome.com/9dab8ca62d.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gloria+Hallelujah&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
@@ -14,7 +14,7 @@
         <header class="header">
             <h1 class="header-title">
                 <i class="fas fa-cat"></i>
-                Tic<span>Tac</span>Toe
+                Conecta<span>4</span>
             </h1>
         </header>
         <section id="menu" class="players-form-data">
@@ -25,11 +25,14 @@
                     <input type="text" name="name" id="name-player1" placeholder="Name of player 1">
                 </div>
                 <div class="player-form-field">
-                    <label for="mark">Mark</label>
-                    <select name="mark" id="mark-player1">
-                        <option value="O">O</option>
-                        <option value="X">X</option>
-                    </select>
+                    <div class="radio-button-container">
+                        <label for="color-player1"><i class="fas fa-circle circle1"></i></label>
+                        <input type="radio" class="color-player1" checked name="color-player1" value="#ed8c72">
+                    </div>
+                    <div class="radio-button-container">
+                        <label for="color-player1"><i class="fas fa-circle circle2"></i></label>
+                        <input type="radio" class="color-player1" name="color-player1" value="#2988bc">
+                    </div>
                 </div>
             </article>
             <article class="player-form">
@@ -39,11 +42,14 @@
                     <input type="text" name="name" id="name-player2" placeholder="Name of player 2">
                 </div>
                 <div class="player-form-field">
-                    <label for="mark">Mark</label>
-                    <select name="mark" id="mark-player2">
-                        <option value="X">X</option>
-                        <option value="O">O</option>
-                    </select>
+                    <div class="radio-button-container">
+                        <label for="color-player2"><i class="fas fa-circle circle1"></i></label>
+                        <input type="radio" class="color-player2" name="color-player2" value="#ed8c72">
+                    </div>
+                    <div class="radio-button-container">
+                        <label for="color-player2"><i class="fas fa-circle circle2"></i></label>
+                        <input type="radio" class="color-player2" checked name="color-player2" value="#2988bc">
+                    </div>
                 </div>
             </article>
             <span id="error">

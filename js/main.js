@@ -1,5 +1,7 @@
 // VARIABLES
 const GRID_SIZE = 6;
+const color1 = '#ed8c72';// X
+const color2= '#2988bc';//O
 const menu = document.getElementById('menu');
 const game = document.getElementById('game');
 const buttonPlay = document.getElementById('button-play');
@@ -7,6 +9,7 @@ const canvas = document.getElementById("canvas");
 const inputNameP1 = document.getElementById('name-player1');
 const inputNameP2 = document.getElementById('name-player2');
 const alert = document.getElementById('alert');
+const circles = document.querySelectorAll('input[type="radio"]');
 
 var ctx = canvas.getContext("2d");  // get context 2D
 var maxX = canvas.width;
@@ -18,40 +21,31 @@ var counter = 0
 var grid;
 var turn;
 
-function Player(id, name, color) {
+// Objeto de tipo jugador
+function Player(id, name,color) {
     this.id= id;
     this.name= name;
-    this.mark = '';
     this.score = 0;
     this.color = color;
 }
-var playerOne = new Player(1,"PlayerOne",'#ed8c72');
-var playerTwo = new Player(2,"Player two",'#2988bc');
+// Crear los objetos de tipo jugador.
+// Se asignan valores predeterminados. En la interfaz gráfica el usuario puede modificar los datos.
+var playerOne = new Player(1,"PlayerOne",color1);
+var playerTwo = new Player(2,"Player two",color2);
 
 buttonPlay.addEventListener('click', onClickButtonPlay);
 
 inputNameP1.addEventListener('blur', validateData);
 inputNameP2.addEventListener('blur', validateData);
 
-// keyup event when player one enters her name
-inputNameP1.addEventListener('keyup', function () {
-    document.getElementById('tag-player1').innerHTML = this.value;   // update view
-    playerOne.name = this.value;
-});
-// keyup event when player two enters her name.
-inputNameP2.addEventListener('keyup', function () {
-    document.getElementById('tag-player2').innerHTML = this.value;
-    playerTwo.name = this.value;
-});
-
-document.getElementById('mark-player1').addEventListener('change', onChangeMark);
-document.getElementById('mark-player2').addEventListener('change', onChangeMark);
+// Agregar evento a cada radio button para seleccionar la marca.
+circles.forEach( mark => mark.addEventListener('click',onSelectColor));
 
 //  FUNCTIONS 
 function onClickButtonPlay() {
     if (dataIsValid()) {
-        playerOne.mark = document.getElementById("mark-player1").value;
-        playerTwo.mark = document.getElementById("mark-player2").value;
+        playerOne.name = inputNameP1.value;
+        playerTwo.name = inputNameP2.value;
         turn = playerOne;
         menu.style.display = 'none';
         game.style.display = 'block';
@@ -74,20 +68,33 @@ function validateData() {
             error.innerHTML = '';
     }
 }
-function onChangeMark() {
-    let nextMark = nextPlayerMark(this.id);
-    if (this.value === 'X')
-        document.getElementById(nextMark).value = 'O';
-    else
-        document.getElementById(nextMark).value = 'X';
+function onSelectColor() {
+    switch(this.className){
+        case 'color-player1':
+            playerOne.color = this.value;
+            if(this.value == color1){
+                circles[3].checked = true;
+                playerTwo.color = color2;
+            }else{
+                circles[2].checked = true;
+                playerTwo.color= color1;
+            }
+        break;
+        case 'color-player2':
+            playerTwo.color = this.value;
+            if(this.value == color1){
+                circles[1].checked = true;
+                playerOne.color = color2; 
+            }else{
+                circles[0].checked = true;
+                playerOne.color= color1;
+            }
+        break;
+    }
 }
 
 function dataIsValid() {
     return (inputNameP1.value != '' && inputNameP2.value != '') ? true : false
-}
-
-function nextPlayerMark(currentId) {
-    return currentId == 'mark-player1' ? 'mark-player2' : 'mark-player1'
 }
 
 function renderGame() {
@@ -124,7 +131,7 @@ function onClickCanvas() {
     py = coords.i;
 
     if(grid[py][px] == ""){
-        drawMark(turn.mark)
+        drawMark(turn.color)
 
         counter++;
         if(counter>=5){
@@ -147,14 +154,9 @@ function onClickCanvas() {
         setTurn()
     }
 }
-function drawMark(mark){
-    grid[py][px] = mark;
-    switch(mark){
-        case 'X': tache()
-        break
-        case 'O': circulo()
-        break;
-    }
+function drawMark(color){
+    grid[py][px] = color;
+    circulo();
 }
 
 function drawBoard() {
@@ -187,71 +189,71 @@ function updateScore(){
     let score = document.getElementById('score-p'+turn.id);
     score.innerHTML = turn.score
 }
-
 function tache() {
     ctx.beginPath();
     ctx.strokeStyle = turn.color;
     ctx.lineWidth = 5;
 
-    ctx.moveTo((px * tamC) + (tamC * .2), ((py + 1) * tamC) - (tamC * .2));         /*    /    */
-    ctx.lineTo(((px + 1) * tamC) - (tamC * .2), ((py) * tamC) + (tamC * .2));       /*   /     */
+    ctx.moveTo((px * tamC) + (tamC * .1), ((py + 1) * tamC) - (tamC * .1));         /*    /    */
+    ctx.lineTo(((px + 1) * tamC) - (tamC * .1), ((py) * tamC) + (tamC * .1));       /*   /     */
 
-    ctx.moveTo((px * tamC) + (tamC * .2), ((py) * tamC) + (tamC * .2));             /*   \    */
-    ctx.lineTo(((px + 1) * tamC) - (tamC * .2), ((py + 1) * tamC) - (tamC * .2));   /*    \    */
+    ctx.moveTo((px * tamC) + (tamC * .1), ((py) * tamC) + (tamC * .1));             /*   \    */
+    ctx.lineTo(((px + 1) * tamC) - (tamC * .1), ((py + 1) * tamC) - (tamC * .1));   /*    \    */
 
     ctx.stroke();
 }
 
 function circulo() {
     ctx.beginPath();
-    ctx.strokeStyle = turn.color;
+    ctx.fillStyle = turn.color;
     ctx.lineWidth = 5;
 
     ctx.arc((px * tamC) + (tamC * .5), (py * tamC) + (tamC * .5), tamC * .32, 0, 2 * Math.PI);
-    ctx.stroke();
+    ctx.fill();
 }
 function existsWinner() { 
-    if(horizontal())    return true;
-    else if(vertical()) return true;
+    let winner = false;
+    if(horizontal())    winner= true;
+    else if(vertical()) winner= true;
     else {
-        if(primaryDiagonal())   return true;
-        else if(secundaryDiagonal())    return true;
+        if(primaryDiagonal())   winner= true;
+        else if(secundaryDiagonal())    winner= true;
+    }
+    if(winner){
+        tache();
+        return true;
     }
     return false;
 }
 function horizontal(){
     let min = px-3;
     let max = px+3;
-    let markCounter = 0;
+    let circleCounter = 0;
 
     if(min<0)   min=0;
     if(max>=GRID_SIZE)  max= GRID_SIZE-1;
-
-    // console.log("horizontal; "+min," ",max);
     
     for(let j=min; j<=max;j++){
-        if(grid[py][j]== turn.mark)
-            markCounter++;
+        if(grid[py][j]== turn.color)
+            circleCounter++;
         else
-            markCounter=0;
-        if(markCounter==4)
+            circleCounter=0;
+        if(circleCounter==4)
             return true;
     }
     return false; 
 }
 function vertical(){
     let max = py+3;
-    let markCounter = 0;
+    let circleCounter = 0;
     if(max>=GRID_SIZE)  max= GRID_SIZE-1;
 
-    // console.log("Vertical: "+py," ",max);
-
     for(let i=py; i<GRID_SIZE;i++){
-        if(grid[i][px]== turn.mark)
-            markCounter++;
+        if(grid[i][px]== turn.color)
+            circleCounter++;
         else
-            markCounter=0;
-        if(markCounter==4)
+            circleCounter=0;
+        if(circleCounter==4)
             return true;
     }
     return false;
@@ -261,7 +263,7 @@ function primaryDiagonal(){
     let maxX = px+3;
     let minY = py-3;
     let maxY = py+3;
-    let markCounter = 0;
+    let circleCounter = 0;
 
     if(minX<0)   minX=0;
     if(minY<0)   minY=0;
@@ -273,9 +275,9 @@ function primaryDiagonal(){
     let j =maxY;
 
     while(i>=minX && j>=minY){
-        if(grid[j][i]==turn.mark)   markCounter++;
-        else    markCounter=0;
-        if(markCounter == 4)
+        if(grid[j][i]==turn.color)   circleCounter++;
+        else    circleCounter=0;
+        if(circleCounter == 4)
             return true;
         i--;
         j--;
@@ -287,7 +289,7 @@ function secundaryDiagonal(){
     let maxX = px+3;
     let minY = py-3;
     let maxY = py+3;
-    let markCounter = 0;
+    let circleCounter = 0;
 
     if(minX<0)   minX=0;
     if(minY<0)   minY=0;
@@ -299,9 +301,9 @@ function secundaryDiagonal(){
     let j =maxY; // filas
 
     while(i<=maxX && j>=minY){
-        if(grid[j][i]==turn.mark)   markCounter++;
-        else    markCounter=0;
-        if(markCounter == 4)
+        if(grid[j][i]==turn.color)   circleCounter++;
+        else    circleCounter=0;
+        if(circleCounter == 4)
             return true;
         i++;
         j--;
@@ -318,8 +320,8 @@ function restart(){
 function goHome(){
     counter=0;
     ctx.clearRect(0, 0, maxX, maxY); // clear canvas
-    playerOne = new Player(1,"PlayerOne",'#ed8c72');
-    playerTwo = new Player(2,"Player two",'#2988bc');
+    playerOne = new Player(1,"PlayerOne",playerOne.color);
+    playerTwo = new Player(2,"Player two",playerTwo.color);
     turn=playerOne;
     document.getElementById('tag-player1').innerHTML = "";
     document.getElementById('tag-player2').innerHTML = "";
